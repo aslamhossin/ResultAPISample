@@ -1,0 +1,40 @@
+<LinearLayout android:id="@+id/container_new_result"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <Button
+    android:id="@+id/button_result"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Result" />
+
+  <Button
+    android:id="@+id/button_single_permission"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Ask Single Permission " />
+
+  <Button
+    android:id="@+id/button_multiple_permission"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Ask Multiple Permission " />
+
+  <Button
+    android:id="@+id/button_image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Get Image form Gallery" />
+
+  <ImageView
+    android:id="@+id/image"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"/>
+
+  <TextView
+    android:id="@+id/text_permission_status"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
+</LinearLayout>
