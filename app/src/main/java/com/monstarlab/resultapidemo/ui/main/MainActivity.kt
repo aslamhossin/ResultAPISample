@@ -32,6 +32,7 @@ class MainActivity @Inject constructor() : BaseActivity() {
     private val customResultContracts = ContractsHandler(
         CustomActivityResultContract(),
         this.activityResultRegistry, this,
+        "custom"
     )
 
     private val singlePermissionContracts =
@@ -39,6 +40,8 @@ class MainActivity @Inject constructor() : BaseActivity() {
             ActivityResultContracts
                 .RequestPermission(),
             this.activityResultRegistry, this,
+            "single"
+
         )
 
     private val multiplePermissionsContracts =
@@ -46,6 +49,7 @@ class MainActivity @Inject constructor() : BaseActivity() {
             ActivityResultContracts
                 .RequestMultiplePermissions(),
             this.activityResultRegistry, this,
+            "multiple"
         )
 
     private val galleryPickerContracts =
@@ -53,12 +57,7 @@ class MainActivity @Inject constructor() : BaseActivity() {
             ActivityResultContracts
                 .GetContent(),
             this.activityResultRegistry, this,
-        )
-
-    private val resultContracts =
-        ContractsHandler(
-            ActivityResultContracts.StartActivityForResult(),
-            this.activityResultRegistry, this,
+            "gallery"
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,21 +98,19 @@ class MainActivity @Inject constructor() : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun observeResultContracts() {
-        lifecycleScope.launch {
-            singlePermissionContracts.result.observe(this@MainActivity) {
-                binding.textPermissionStatus.text = "Single Permission: $it"
-            }
+        singlePermissionContracts.result.observe(this@MainActivity) {
+            binding.textPermissionStatus.text = "Single Permission: $it"
+        }
 
-            multiplePermissionsContracts.result.observe(this@MainActivity) {
-                binding.textPermissionStatus.text = "Multiple Permission: $it"
-            }
+        multiplePermissionsContracts.result.observe(this@MainActivity) {
+            binding.textPermissionStatus.text = "Multiple Permission: $it"
+        }
 
-            galleryPickerContracts.result.observe(this@MainActivity) {
-                binding.image.setImageURI(it)
-            }
-            customResultContracts.result.observe(this@MainActivity) {
-                binding.textPermissionStatus.text = "Custom Activity Result: $it"
-            }
+        galleryPickerContracts.result.observe(this@MainActivity) {
+            binding.image.setImageURI(it)
+        }
+        customResultContracts.result.observe(this@MainActivity) {
+            binding.textPermissionStatus.text = "Custom Activity Result: $it"
         }
     }
 

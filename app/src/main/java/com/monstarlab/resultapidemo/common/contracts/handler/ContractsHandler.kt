@@ -29,6 +29,8 @@ class ContractsHandler<I, O>(
         resultLauncher = registry.register(
             key,
             contract
-        ) { output -> result.value = output }
+        ) { output: O ->
+            result.value = output
+        }
     }
 }
